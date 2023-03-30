@@ -288,6 +288,20 @@
           margin: 0;
       }
 
+      #wc_logo {
+          position: absolute;
+          top: 15px;
+          left: 17px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      #wc_logo > img {
+          width: 40px;
+          height: 40px;
+      }
+
       @media screen and (max-width: 760px) {
           #weeklyChallenge {
               width: auto;
@@ -302,6 +316,10 @@
           }
 
           #weeklyChallenge .player_layer {
+              display: none;
+          }
+
+          #wc_logo {
               display: none;
           }
       }
@@ -337,6 +355,9 @@
     <h2>
       eRepublik Weekly Challenge Calculator
     </h2>
+    <div id="wc_logo">
+      <img src="static/health_regen.png" alt="Prestige Points" title="Prestige Points">
+    </div>
     <div class="player_layer">
       <span id="vs_output_pp">
         3,761 <img
