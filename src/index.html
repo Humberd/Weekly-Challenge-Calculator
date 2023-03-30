@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+  <script type="text/javascript">window.addEventListener('DOMContentLoaded', function() {
+    var v = archive_analytics.values;
+    v.service = 'wb';
+    v.server_name = 'wwwb-app214.us.archive.org';
+    v.server_ms = 215;
+    archive_analytics.send_pageview({});
+  });</script>
+  <script type="text/javascript" src="/_static/js/bundle-playback.js?v=ViQoywbk" charset="utf-8"></script>
+  <script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+  <script type="text/javascript">
+    __wm.init('https://web.archive.org/web');
+    __wm.wombat('http://wcsimulator.droppages.com/', '20200930235922', 'https://web.archive.org/', 'web', '/_static/',
+        '1601510362');
+  </script>
+  <link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt"/>
+  <link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ"/>
+  <!-- End Wayback Rewrite JS Include -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>&#128701; eRepublik Weekly Challenge Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="A highly adjustable tool for optimizing your epic Tuesday tanking.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <style>
+      body {
+          background: rgba(0, 0, 0, 0) url("https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/ambients/external/bg_default.jpg") no-repeat scroll center top;
+          text-align: center;
+          font-family: Arial;
+      }
+
+      table {
+          margin: auto;
+          text-align: right;
+          display: none;
+      }
+
+      th, td {
+          border: 1px solid orange;
+          padding: 3px;
+      }
+
+      th {
+          text-align: center;
+      }
+
+      input[type=number] {
+          margin: 5px;
+          width: 60px;
+          text-align: center;
+      }
+
+      p {
+          font: 700 20px/22px Arial;
+          color: #FB7E3D;
+      }
+
+      a, b {
+          color: #fff;
+          font: 700 18px/20px Arial;
+          padding: 5px;
+          margin: 10px 20px 0;
+          border-radius: 5px;
+          text-decoration: none;
+          box-shadow: 2px 2px 5px gray;
+          display: inline-block;
+      }
+
+      a:hover {
+          filter: brightness(1.1);
+      }
+
+      span {
+          font-size: 11px;
+      }
+
+      #showDetails {
+          cursor: pointer;
+          color: #FB7E3D;
+      }
+
+      /* from eRepublik + Vadas */
+      body > div {
+          max-width: 970px;
+          margin: 0 auto;
+      }
+
+      #weeklyChallenge {
+          width: 760px;
+          height: 110px;
+          border-radius: 8px;
+          position: relative;
+          padding: 0;
+          margin: 5px auto;
+          background-image: url(https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/weekly_challenge/weekly_challenge_ref.jpg?1588256904523);
+      }
+
+      #weeklyChallenge h2 {
+          display: block;
+          padding: 25px 0 0 0;
+          margin: 0 auto;
+          text-align: center;
+          font: 700 20px/22px Arial;
+          color: #c5e66d;
+      }
+
+      #weeklyChallenge .player_layer {
+          width: 740px;
+          height: 38px;
+          position: absolute;
+          left: 10px;
+          top: 65px;
+      }
+
+      #vs_output_pp {
+          padding: 3px 0 0;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          width: 155px;
+          height: 35px;
+          display: table;
+          position: relative;
+          top: 3px;
+          left: 12px;
+
+          font: 700 18px/20px Arial;
+          text-align: left;
+          color: #fff;
+          text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+      }
+
+      #vs_output_pp img {
+          vertical-align: middle;
+          height: 24px;
+      }
+
+      #vs_output_progressbar {
+          background-image: url(https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/weekly_challenge/progress_colors.png?1588256904507);
+          background-repeat: no-repeat;
+          background-position: -480px 0px;
+
+          display: block;
+          position: absolute;
+          padding: 0;
+          margin: 0;
+          right: 85px;
+          top: 15px;
+          width: 480px;
+          height: 11px;
+      }
+
+      .vadas_class {
+          display: inline-block;
+          vertical-align: top;
+          text-align: center;
+          width: 240px;
+          min-height: 90px;
+          margin: 0 auto 5px;
+          padding: 5px 5px;
+          border: 1px solid orange;
+      }
+
+      .vadas_block label {
+          display: inline-block;
+          vertical-align: bottom;
+          text-align: center;
+      }
+
+      .vadas_block label img, .vadas_block label input {
+          display: block;
+          margin: 0 auto;
+      }
+
+      .vadas_block label img {
+          height: 34px;
+      }
+
+      .vadas_class label img {
+          vertical-align: middle;
+      }
+
+      .vadas_class h3 {
+          margin: 0px;
+      }
+
+      .health_bg {
+          background-image: url(https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/sidebar/energy_health_bg.png?1588256904363);
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-size: 194px 26px;
+          text-align: left;
+          padding: 0;
+          margin: 5px auto;
+          display: block;
+          position: relative;
+          width: 194px;
+          height: 26px;
+          backface-visibility: hidden;
+          animation-duration: 1s;
+          animation-delay: .2s;
+          animation-timing-function: ease;
+          animation-fill-mode: both;
+      }
+
+      .health_bar {
+          width: 181px;
+          height: 20px;
+          top: 2px;
+          margin: 2px 0 0 9px;
+          position: relative;
+          background: #c4cbc9;
+          background: -webkit-linear-gradient(#e1eae8 0, #cce7ca 100%) #cce7ca;
+          background: linear-gradient(#e1eae8 0, #cce7ca 100%) #cce7ca;
+          box-shadow: 0 1px 3px #c4cbc9 inset, 1px 0 3px #bdd8ba inset;
+          border: 1px solid #a8afad;
+          border-bottom: 1px solid #9fbe9d;
+          border-right: 1px solid #d2d5d7;
+          border-radius: 3px;
+      }
+
+      .health_icon {
+          position: absolute;
+          top: -1px;
+          z-index: 4;
+          left: -7px;
+      }
+
+      #health_bar_progress, #health_back_progress {
+          margin-top: 0;
+          border-radius: 3px 0 0 3px;
+          left: 0;
+          position: absolute;
+          float: left;
+          height: 20px;
+      }
+
+      #health_bar_progress {
+          max-width: 100%;
+          z-index: 2;
+          background: -webkit-linear-gradient(#7cc644 0, #2ca81f 100%) #2ca81f;
+          background: linear-gradient(#7cc644 0, #2ca81f 100%) #2ca81f;
+          box-shadow: 0 1px 0 #7cc644 inset, 0 2px 0 rgba(255, 255, 255, .5) inset;
+      }
+
+      #health_back_progress {
+          z-index: 1;
+          background: -webkit-linear-gradient(#95cf5f 0, #91d561 100%) #91d561;
+          background: linear-gradient(#95cf5f 0, #91d561 100%) #91d561;
+          background-clip: padding-box;
+          box-shadow: 0 0 10px rgba(0, 0, 0, .1) inset;
+      }
+
+      .health_bar strong {
+          display: block;
+          position: absolute;
+          width: 175px;
+          height: 20px;
+          text-align: center;
+          right: -2px;
+          top: 0;
+          line-height: 20px;
+          font-size: 11px;
+          font-weight: 700;
+          font-family: Arial, sans-serif;
+          z-index: 3;
+          cursor: default;
+          color: #5f6364;
+          text-shadow: 0 -1px 0 rgba(255, 255, 255, .3), 0 1px 0 rgba(255, 255, 255, .3);
+          border-radius: 6px;
+      }
+
+      .health_bar strong input {
+          margin: 0px;
+      }
+
+      #output div {
+          display: block;
+          background: #FAFAF5;
+          border-radius: 20px;
+          width: 300px;
+          margin: 5px auto;
+          padding: 5px;
+          text-align: left;
+          box-shadow: 0 0 3px rgba(0, 0, 0, .1) inset;
+      }
+
+      #output span {
+          display: inline-block;
+          width: 180px;
+          font-size: 14px;
+      }
+
+      #output img {
+          vertical-align: middle;
+          height: 36px;
+          width: 36px;
+      }
+
+      #output b {
+          background: #83B70B;
+          border-radius: 20px;
+          min-width: 100px;
+          text-align: center;
+          margin: 0;
+      }
+
+      @media screen and (max-width: 760px) {
+          #weeklyChallenge {
+              width: auto;
+              height: auto;
+              background: none;
+          }
+
+          #weeklyChallenge h2 {
+              color: #FB7E3D;
+              margin: 20px;
+              padding: 0;
+          }
+
+          #weeklyChallenge .player_layer {
+              display: none;
+          }
+      }
+  </style>
+</head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+  <div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+    <div id="donato" style="position:relative;width:100%;">
+      <div id="donato-base">
+        <iframe
+          id="donato-if"
+          src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20200930235922/https%3A//wcsimulator.droppages.com/"
+          scrolling="no"
+          frameborder="0"
+          style="width:100%; height:100%"
+        >
+        </iframe>
+      </div>
+    </div>
+    <div id="wm-ipp-inside">
+      <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+        <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+          <a
+            href="/web/"
+            title="Wayback Machine home page"
+          ><img
+            src="/_static/images/toolbar/wayback-toolbar-logo-200.png"
+            srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x"
+            alt="Wayback Machine"
+            style="width:100px"
+            border="0"
+          /></a>
+        </div>
+        <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+          <form
+            class="u"
+            style="display:flex;flex-direction:row;flex-wrap:nowrap;"
+            target="_top"
+            method="get"
+            action="/web/submit"
+            name="wmtb"
+            id="wmtb"
+          ><input
+            type="text"
+            name="url"
+            id="wmtbURL"
+            value="https://wcsimulator.droppages.com/"
+            onfocus="this.focus();this.select();"
+            style="flex:1;"
+          /><input type="hidden" name="type" value="replay"/><input
+            type="hidden"
+            name="date"
+            value="20200930235922"
+          /><input type="submit" value="Go"/>
+          </form>
+          <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+            <div class="s" id="wm-nav-captures" style="flex:1;">
+              <a
+                class="t"
+                href="/web/20200930235922*/https://wcsimulator.droppages.com/"
+                title="See a list of every capture for this URL"
+              >16 captures</a>
+              <div class="r" title="Timespan for captures of this URL">25 Dec 2018 - 30 Sep 2020</div>
+            </div>
+            <div class="k">
+              <a href="" id="wm-graph-anchor">
+                <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+                  <canvas id="wm-sparkline-canvas" width="700" height="27" border="0"></canvas>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="n">
+          <table>
+            <tbody>
+            <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+            <tr class="m">
+              <td class="b" nowrap="nowrap"><a
+                href="https://web.archive.org/web/20200727042351/http://wcsimulator.droppages.com:80/"
+                title="27 Jul 2020"
+              ><strong>Jul</strong></a></td>
+              <td class="c" id="displayMonthEl" title="You are here: 23:59:22 Sep 30, 2020">SEP</td>
+              <td class="f" nowrap="nowrap">Oct</td>
+            </tr>
+            <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+            <tr class="d">
+              <td class="b" nowrap="nowrap"><a
+                href="https://web.archive.org/web/20200727042351/http://wcsimulator.droppages.com:80/"
+                title="04:23:51 Jul 27, 2020"
+              ><img
+                src="/_static/images/toolbar/wm_tb_prv_on.png"
+                alt="Previous capture"
+                width="14"
+                height="16"
+                border="0"
+              /></a></td>
+              <td
+                class="c"
+                id="displayDayEl"
+                style="width:34px;font-size:22px;white-space:nowrap;"
+                title="You are here: 23:59:22 Sep 30, 2020"
+              >30
+              </td>
+              <td class="f" nowrap="nowrap"><img
+                src="/_static/images/toolbar/wm_tb_nxt_off.png"
+                alt="Next capture"
+                width="14"
+                height="16"
+                border="0"
+              /></td>
+            </tr>
+            <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+            <tr class="y">
+              <td class="b" nowrap="nowrap"><a
+                href="https://web.archive.org/web/20190906092024/http://wcsimulator.droppages.com:80/"
+                title="06 Sep 2019"
+              ><strong>2019</strong></a></td>
+              <td class="c" id="displayYearEl" title="You are here: 23:59:22 Sep 30, 2020">2020</td>
+              <td class="f" nowrap="nowrap">2021</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+          <div id="wm-btns" style="text-align:right;height:23px;">
+            <span class="xxs">
+              <div id="wm-save-snapshot-success">success</div>
+              <div id="wm-save-snapshot-fail">fail</div>
+              <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive">
+                <span class="iconochive-web"></span>
+              </a>
+              <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+                <span class="iconochive-person"></span>
+              </a>
+              <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+            </span>
+            <a
+              class="xxs"
+              href="http://faq.web.archive.org/"
+              title="Get some help using the Wayback Machine"
+              style="top:-6px;"
+            ><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+            <a
+              id="wm-tb-close"
+              href="#close"
+              style="top:-2px;"
+              title="Close the toolbar"
+            ><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+          </div>
+          <div id="wm-share" class="xxs">
+            <a
+              href="/web/20200930235922/http://web.archive.org/screenshot/https://wcsimulator.droppages.com/"
+              id="wm-screenshot"
+              title="screenshot"
+            >
+              <span class="wm-icon-screen-shot"></span>
+            </a>
+            <a href="#" id="wm-video" title="video">
+              <span class="iconochive-movies"></span>
+            </a>
+            <a
+              id="wm-share-facebook"
+              href="#"
+              data-url="https://web.archive.org/web/20200930235922/http://wcsimulator.droppages.com/"
+              title="Share on Facebook"
+              style="margin-right:5px;"
+              target="_blank"
+            ><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+            <a
+              id="wm-share-twitter"
+              href="#"
+              data-url="https://web.archive.org/web/20200930235922/http://wcsimulator.droppages.com/"
+              title="Share on Twitter"
+              style="margin-right:5px;"
+              target="_blank"
+            ><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+          </div>
+          <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+            <a
+              id="wm-expand"
+              class="wm-btn wm-closed"
+              href="#expand"
+              onclick="__wm.ex(event);return false;"
+            ><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About
+              this capture</span></a>
+          </div>
+        </div>
+      </div>
+      <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-collected-by">
+          <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+          <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:49%;">
+              <span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+              <div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span
+                class="wm-title"
+              >Common Crawl</span></a></div>
+              <div style="max-height:75px;overflow:hidden;position:relative;">
+                <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+                Web crawl data from Common Crawl.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="wm-capinfo-timestamps">
+          <div
+            style="background-color:#666;color:#fff;font-weight:bold;text-align:center"
+            title="Timestamps for the elements of this page"
+          >TIMESTAMPS
+          </div>
+          <div>
+            <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+            <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none">
+              <img src="/_static/images/loading.gif" alt="loading"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="wm-ipp-print">The Wayback Machine -
+  https://web.archive.org/web/20200930235922/http://wcsimulator.droppages.com/
+</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(700, 27, 25, 2, 'web', 'https://wcsimulator.droppages.com/', '20200930235922', 1996, '/_static/',
+    ['/_static/css/banner-styles.css?v=S1zqJCYt', '/_static/css/iconochive.css?v=qtvMKcIJ'], false);
+__wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<div>
+  <a
+    style="background: #FB7E3D"
+    href="https://web.archive.org/web/20200930235922/https://www.erepublik.com/en/citizen/profile/6365664"
+  >
+    Code: Zordacz
+  </a>
+  <a
+    style="background: #83B70B"
+    href="https://web.archive.org/web/20200930235922/https://www.erepublik.com/en/citizen/profile/3588851"
+  >
+    CSS: Vadaskertbenvok
+  </a>
+  <a
+    style="background: #009CFF"
+    href="https://web.archive.org/web/20200930235922/https://docs.google.com/spreadsheets/d/1nal62cgC7lUmrur6NRzlPVU3uxtE59WGV9-bZcPoIw8"
+  >
+    eRepublik Stuff++
+  </a>
+  <a
+    style="background: #FB7E3D"
+    href="https://web.archive.org/web/20200930235922/https://docs.google.com/spreadsheets/d/1APUYLfQfiNW1MbZmE1nMA8mFrcWbkFVvD9AK9JmVj08"
+  >
+    AutoFighter
+  </a>
+  <div id="weeklyChallenge">
+    <h2>
+      eRepublik Weekly Challenge Calculator
+    </h2>
+    <div class="player_layer">
+      <span id="vs_output_pp">
+        3,761 <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/popups/glory_icon.png"
+        alt="Prestige Points"
+        title="Prestige Points"
+      >
+      </span>
+      <div id="vs_output_progressbar">
+
+      </div>
+    </div>
+  </div>
+  <div class="vadas_class vadas_block">
+    <h3>Burn energy bars!</h3>
+    <label>
+      <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/icons/industry/1/q10.png"
+        alt="Energy bars to burn"
+        title="Energy bars to burn"
+      >
+      <input type="number" id="barsToSpend" value="0" min="0" step="5">
+    </label>
+    <label>
+      at hour
+      <input type="number" id="hourToFight" value="2" min="0" max="167">
+    </label>
+    <label>
+      <input type="checkbox" id="spendBarsInEpic" checked="">
+      <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/misc/epic_battles_icon.png"
+        alt="in epic battles"
+        title="in epic battles"
+      >
+    </label>
+    <label>
+      <input type="checkbox" id="spendBarsWithPPBoosters">
+      <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/pvp/prestige_points_boosters/prestige_booster.png"
+        alt="with PP boosters"
+        title="with PP boosters"
+      >
+    </label>
+  </div>
+  <div class="vadas_class">
+    <h3>Energy recovery</h3>
+    <div class="health_bg">
+      <div class="health_bar">
+        <img
+          src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/sidebar/energy_bar_icon2.png"
+          alt=""
+          class="health_icon"
+        >
+        <strong><input type="number" id="energyAtWCSTart" value="1000" min="0" step="10" title="Energy at WC start"> /
+          <input type="number" id="energyPoolHits" value="500" min="0" step="10" title="Health bar size"></strong>
+        <div id="health_bar_progress" style="width: 100%"></div>
+        <div id="health_back_progress" style="width: 100%"></div>
+      </div>
+    </div>
+    <label title="Your energy recovery without WC rewards. The base is 10. Power Pack adds 20. Being a resident adds 2 and every active house adds further 2.">
+      <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/sidebar/recover_energy_icon.gif?1588256904395"
+        alt="Starting energy recovery"
+        title="Starting energy recovery"
+      >
+      <input type="number" id="baseRecovery" value="10" min="10" step="2">
+    </label>
+  </div>
+  <div class="vadas_class">
+    <label>
+      % of <img
+      src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/icons/industry/1/default.png"
+      style="height: 32px"
+      alt="food"
+      title="food"
+    > fights spent in <img
+      src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/misc/epic_battles_icon.png"
+      style="height: 32px"
+      alt="epic battles"
+      title="epic battles"
+    >
+      <input type="number" id="epicFoodFights" value="0" min="0" max="100">
+    </label>
+    <br>
+    <label title="How many companies you work as manager in per day + how many times you work overtime. Example: you have 50 companies and work overtime twice per day. You should then enter 50 + 2 = 52.">
+      WaM + <img
+      src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.com/images/modules/misc/overtime_points_55x55.png"
+      style="height: 32px"
+      alt="overtime"
+    >/day
+      <input type="number" id="companiesAndOvertime" value="0" min="0">
+    </label>
+  </div>
+  <div class="vadas_class">
+    <label title="Counts as 50% more EB rewards">
+      Carrots/ice creams/pumpkins/treats
+      <input type="checkbox" id="carrotsIcecreamsTreats">
+    </label>
+    <br>
+    <label>
+      WC ends at
+      <input type="number" id="wcPPcap" value="40000" min="20000" step="1000">
+      <img
+        src="https://web.archive.org/web/20200930235922im_/https://www.erepublik.net/images/modules/popups/glory_icon.png"
+        style="height: 32px"
+        alt="prestige points"
+        title="prestige points"
+      >
+    </label>
+  </div>
+  <div id="output"></div>
+  <div id="showDetails">↓ Show details ↓</div>
+  <div style="text-align:left;max-width:700px;margin:5px auto;padding:2px 5px;border:1px solid orange">
+    Notes:
+    <br>
+    - Hits from energy bars have level-up energy refill added gradually as fractions. It's good for long term
+    calculation but particular results may vary.
+    <br>
+    - The simulation assumes you begin with 2,500xp left to the next level - the average long term value.
+    <br>
+    - Overtime work is done all at once - it wouldn't matter if it were done every hour, anyway.
+    <br>
+    <div id="tooManyCompsError">- Extreme company numbers (higher than your full hits can swallow in one go) aren't
+      supported.
+    </div>
+  </div>
+</div>
+<script>
+  // Vadas's script
+  function vs_simulate(prestigePoints) {
+    var vs_output_pp_Element = document.getElementById('vs_output_pp');
+    var vs_output_progressbar_Element = document.getElementById('vs_output_progressbar');
+    var health_bar_progress_Element = document.getElementById('health_bar_progress');
+
+    var progressbar_maxwidth = 480;
+    var progressbar_width = progressbar_maxwidth / settings.wcPPcap.value * prestigePoints - progressbar_maxwidth;
+    if (progressbar_width > 0) progressbar_width = 0;
+    var health_bar_width = settings.energyAtWCSTart.value / settings.energyPoolHits.value * 100;
+
+    vs_output_pp_Element.innerHTML = comma(prestigePoints) +
+        ' <img src="https://web.archive.org/web/20200930235922/https://www.erepublik.net/images/modules/popups/glory_icon.png" alt="Prestige Points" title="Prestige Points">';
+    vs_output_progressbar_Element.style.backgroundPosition = progressbar_width + 'px 0px';
+    health_bar_progress_Element.style.width = health_bar_width + '%';
+  }
+</script>
+<script>
+  // original script
+  function comma(a) {
+    return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function generateHashParams() {
+    return location.hash.includes('#') ? location.hash.split('#')[1].split(',') : [];
+  }
+
+  function simulate() {
+    var baseRecovery = +settings.baseRecovery.value;
+    var energyRecovery = baseRecovery;
+    var energyPoolHits = settings.energyPoolHits.value / 10 * 2;
+    var fightThreshold = 0.75;
+    var levelUpRefill = parseInt(energyPoolHits / 2);
+    var barsToSpend = +settings.barsToSpend.value;
+    var prestigePointsPerFoodFight = 1 + settings.epicFoodFights.value / 100;
+    var hitsWithbarsAndLevelUpRefills = parseInt(barsToSpend * 10 * ((5000 + energyPoolHits - 5) / 5000));
+    var companiesAndOvertime = +settings.companiesAndOvertime.value;
+    var haveWorkedInCompanies = [0, 0, 0, 0, 0, 0, 0];
+    var prestigePoints = 0;
+    var experience = 0;
+    var xpLeft = 2500;
+    var currentEnergyHits = parseInt(settings.energyAtWCSTart.value / 10);
+    var output = '';
+    tooManyCompsErrorElement.style.background = '';
+    if (energyPoolHits < companiesAndOvertime) {
+      tooManyCompsErrorElement.style.background = 'red';
+      outputElement.innerHTML = '';
+    } else {
+      for (let hour = 0; hour < 168; hour++) {
+        var hourMessage = [];
+        var day = parseInt(hour / 24);
+        if (hour) currentEnergyHits = Math.min(currentEnergyHits + energyRecovery, energyPoolHits);
+        if (hour % 24 == 0) {
+          experience += 12;
+          currentEnergyHits -= 5;
+          xpLeft -= 12;
+          hourMessage.push('Daily task');
+        }
+        if (hour == settings.hourToFight.value && barsToSpend) {
+          experience += hitsWithbarsAndLevelUpRefills + currentEnergyHits;
+          prestigePoints += (hitsWithbarsAndLevelUpRefills + currentEnergyHits) *
+              (1 + settings.spendBarsInEpic.checked + settings.spendBarsWithPPBoosters.checked);
+          currentEnergyHits = 0;
+          hourMessage.push(hitsWithbarsAndLevelUpRefills + ' hits from EBs');
+        }
+        if (!haveWorkedInCompanies[day] && hour % 24 >= 15) {
+          if (currentEnergyHits >= companiesAndOvertime) {
+            haveWorkedInCompanies[day] = 1;
+            currentEnergyHits -= companiesAndOvertime;
+            experience += companiesAndOvertime * 2;
+            xpLeft -= companiesAndOvertime * 2;
+            hourMessage.push('WaM + overtime');
+            if (xpLeft < 0) {
+              xpLeft += 5000;
+              experience += levelUpRefill;
+              prestigePoints += parseInt(levelUpRefill * prestigePointsPerFoodFight);
+              xpLeft -= levelUpRefill;
+              hourMessage.push('Level up fight');
+            }
+          }
+        } else if (currentEnergyHits >= fightThreshold * energyPoolHits) {
+          var hitsToDo = Math.min(currentEnergyHits,
+              currentEnergyHits + (168 - hour) * energyRecovery - energyPoolHits);
+          if (hitsToDo < currentEnergyHits) hourMessage.push('WC finish energy saving');
+          experience += hitsToDo;
+          prestigePoints += parseInt(hitsToDo * prestigePointsPerFoodFight);
+          xpLeft -= hitsToDo;
+          if (hitsToDo) hourMessage.push('Fight');
+          if (xpLeft < 0) {
+            xpLeft += 5000;
+            experience += levelUpRefill;
+            prestigePoints += parseInt(levelUpRefill * prestigePointsPerFoodFight);
+            xpLeft -= levelUpRefill;
+            hourMessage.push('Level up fight');
+          }
+          currentEnergyHits = currentEnergyHits - hitsToDo;
+
+        }
+        for (let rewardThreshold of Object.keys(recoveryFromWC)) if (prestigePoints >=
+            rewardThreshold) energyRecovery = baseRecovery + recoveryFromWC[rewardThreshold];
+        if (hourMessage.length) {
+          var dayHour = hour % 24;
+          output += '<tr><td>d' + (1 + day) + ' ' + (dayHour > 9 ? dayHour : '0' + dayHour) + ':00</td><td>' +
+              hourMessage.join(', ') + '</td><td>' + energyRecovery + '</td><td>' + comma(experience) + '</td><td>' +
+              comma(prestigePoints) + '</td></tr>';
+        }
+      }
+      var netEnergyBarGain;
+      for (let rewardThreshold of Object.keys(energyBarRewards)) if (prestigePoints >=
+          rewardThreshold) netEnergyBarGain = parseInt(
+          energyBarRewards[rewardThreshold] * (settings.carrotsIcecreamsTreats.checked ? 1.5 : 1)) - barsToSpend;
+      if (prestigePoints > 20000) netEnergyBarGain += Math.floor(
+              (Math.min(prestigePoints, settings.wcPPcap.value) - 20000) / 1000) *
+          (settings.carrotsIcecreamsTreats.checked ? 30 : 20);
+      var permalinkParams = [];
+      for (let key of Object.keys(settings)) permalinkParams.push(
+          +settings[key][settings[key].type == 'checkbox' ? 'checked' : 'value']);
+      var hash = '#' + permalinkParams.join();
+      location.hash = hash;
+      localStorage.hash = hash;
+      outputElement.innerHTML = '<div><span><img src="https://web.archive.org/web/20200930235922/https://www.erepublik.net/images/modules/pvp/xp_icon.png" alt=""> Experience Points</span><b>' +
+          comma(experience) + '</b></div>' +
+          '<div><span><img src="https://web.archive.org/web/20200930235922/https://www.erepublik.net/images/modules/popups/glory_icon.png" alt=""> Prestige Points</span><b>' +
+          comma(prestigePoints) + '</b></div>' +
+          '<div><span><img src="https://web.archive.org/web/20200930235922/https://www.erepublik.net/images/icons/industry/1/q10.png" alt="energy bars"> Net energy bars</span><b>' +
+          comma(netEnergyBarGain) + '</b></div>';
+      outputElement.innerHTML += '<br><br><table><tr><th>Time</th><th>Actions</th><th>Recovery</th><th>Experience</th><th>Prestige points</th></tr>' +
+          output + '</table>';
+
+      // call Vadas's script
+      vs_simulate(prestigePoints); // <-
+    }
+  }
+
+  var recoveryFromWC = {
+    5: 1,
+    10: 2,
+    15: 3,
+    25: 4,
+    50: 5,
+    75: 6,
+    150: 7,
+    300: 8,
+    400: 9,
+    500: 10,
+    750: 11,
+    1200: 12,
+    1650: 13,
+    2100: 14,
+    2750: 15,
+    3250: 16,
+    3750: 17,
+    4250: 18,
+    4750: 19,
+    5000: 20,
+    5250: 21,
+    5750: 22,
+    6250: 23,
+    6750: 24,
+    7250: 25,
+    7750: 26,
+    8250: 27,
+    8750: 28,
+    9250: 29,
+    10000: 30,
+    10250: 31,
+    10750: 32,
+    11250: 33,
+    11750: 34,
+    12250: 35,
+    12750: 36,
+    13250: 37,
+    13750: 38,
+    14250: 39,
+    15000: 40,
+    15250: 41,
+    15750: 42,
+    16250: 43,
+    16750: 44,
+    17250: 45,
+    17750: 46,
+    18250: 47,
+    18750: 48,
+    19250: 49,
+    20000: 50,
+  };
+  var energyBarRewards = {
+    1050: 1,
+    1800: 2,
+    2300: 7,
+    3500: 12,
+    4500: 17,
+    7000: 27,
+    7500: 37,
+    8000: 47,
+    8500: 57,
+    9000: 67,
+    9500: 77,
+    10500: 87,
+    11000: 97,
+    11500: 107,
+    12000: 117,
+    12500: 127,
+    13000: 137,
+    13500: 147,
+    14000: 157,
+    14500: 167,
+    15500: 182,
+    16000: 197,
+    16500: 212,
+    17000: 227,
+    17500: 242,
+    18000: 257,
+    18500: 272,
+    19000: 287,
+    19500: 302,
+  };
+  var settings = {};
+  var inputElements = document.querySelectorAll('input');
+  var hashParams = generateHashParams();
+  var shouldApplyHashParams = hashParams.length == inputElements.length;
+  if (!shouldApplyHashParams && localStorage.hash) {
+    location.hash = localStorage.hash;
+    hashParams = generateHashParams();
+    shouldApplyHashParams = true;
+  }
+  inputElements.forEach(function(el, index) {
+    settings[el.id] = el;
+    el.addEventListener('input', simulate);
+    if (shouldApplyHashParams) {
+      var isCheckbox = el.type == 'checkbox';
+      el[isCheckbox ? 'checked' : 'value'] = isCheckbox ? !!+hashParams[index] : hashParams[index];
+    }
+  });
+  var outputElement = document.getElementById('output');
+  var tooManyCompsErrorElement = document.getElementById('tooManyCompsError');
+  simulate();
+  document.getElementById('showDetails').addEventListener('click', function() {
+    if (this.innerHTML == '↓ Show details ↓') {
+      this.innerHTML = '↑ Hide details ↑';
+      document.head.insertAdjacentHTML('beforeEnd', '<style>#output table{display:unset}</style>');
+    } else {
+      this.innerHTML = '↓ Show details ↓';
+      document.head.insertAdjacentHTML('beforeEnd', '<style>#output table{display:none}</style>');
+    }
+  });
+</script>
+
+</body>
+</html><!--
+     FILE ARCHIVED ON 23:59:22 Sep 30, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 09:09:08 Mar 30, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 111.646 (11)
+  exclusion.robots: 0.218
+  exclusion.robots.policy: 0.205
+  cdx.remote: 0.063
+  esindex: 0.009
+  LoadShardBlock: 80.577 (3)
+  PetaboxLoader3.datanode: 57.417 (4)
+  load_resource: 99.2
+  PetaboxLoader3.resolve: 69.902
+-->
